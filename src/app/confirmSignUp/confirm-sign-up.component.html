@@ -1,0 +1,76 @@
+<div
+  class="w-100 screen"
+  style="display: grid; justify-content: center; align-items: center"
+></div>
+
+<ng-template #content let-modal>
+  <div>
+    <div class="view">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          Confirmação do E-mail
+        </h4>
+        <button
+          style="
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: lightgray;
+            border: none;
+          "
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div style="font-size: 20px; display: inline">
+            <div class="alert alert-success" role="alert">
+              Usuário Cadastrado com Sucesso
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contentError let-modal>
+  <div>
+    <div class="view">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          Confirmação do E-mail
+        </h4>
+        <button
+          style="
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: lightgray;
+            border: none;
+          "
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div style="font-size: 20px; display: inline">
+            <div class="alert alert-danger" role="alert">
+              {{ messageErro }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,192 @@
+<div
+  class="w-100 loginScreen"
+  style="display: grid; justify-content: center; align-items: center"
+>
+  <form
+    [formGroup]="signUpForm"
+    class="form mt-4"
+    style="
+      background-color: #ebebee;
+      padding: 25px;
+      border-radius: 10px;
+      height: auto;
+      border-top: solid 5px #0d6efd;
+    "
+    (submit)="register()"
+  >
+    <h4 class="text-center mb-4">Cadastro de Usuario</h4>
+
+    <div class="form-group mb-4" style="position: relative">
+      <input
+        formControlName="email"
+        placeholder="E-mail"
+        class="form-control"
+        autofocus
+      />
+      <small
+        style="bottom: -20px"
+        *ngIf="signUpForm.get('email')?.errors?.['required']"
+        class="text-danger d-block mt-2 position-absolute"
+      >
+        Email é obrigatório!
+      </small>
+      <small
+        style="bottom: -20px"
+        *ngIf="signUpForm.get('email')?.errors?.['email']"
+        class="text-danger d-block position-absolute"
+      >
+        Formato de e-mail incorreto!
+      </small>
+    </div>
+
+    <div class="form-group mb-4" style="position: relative">
+      <input
+        formControlName="userName"
+        placeholder="Usuario"
+        class="form-control"
+      />
+      <small
+        style="bottom: -20px"
+        *ngIf="signUpForm.get('userName')?.errors?.['required']"
+        class="text-danger d-block mt-2 position-absolute"
+      >
+        Nome de usuário é obrigatório!
+      </small>
+
+      <small
+        style="bottom: -20px"
+        *ngIf="signUpForm.get('userName')?.errors?.['userNameTaken']"
+        class="text-success position-absolute"
+      >
+        Esse nome de usuário já existe</small
+      >
+    </div>
+
+    <div class="form-group mb-4" style="position: relative">
+      <div class="d-flex">
+      <input
+        formControlName="password"
+        placeholder="Senha"
+        type="{{ showPassword ? 'text' : 'password' }}"
+        class="form-control"
+      />
+      <div style="margin: auto;margin-left: 5px" (click)="showPassword = !showPassword">
+        <div *ngIf="showPassword">
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+        <div *ngIf="!showPassword">
+          <i class="fa-solid fa-eye"></i>
+        </div>
+      </div>
+    </div>
+      <small
+        style="bottom: -20px"
+        *ngIf="signUpForm.get('password')?.errors?.['required']"
+        class="text-danger d-block mt-2 position-absolute"
+      >
+        Esse campo é obrigatório
+      </small>
+    </div>
+
+    <div class="form-group mb-2" style="position: relative">
+      <div class="d-flex">
+      <input
+        formControlName="rePassword"
+        type="{{ showRePassword ? 'text' : 'password' }}"
+        placeholder="Confirmação de Senha"
+        class="form-control"
+      />
+      <div style="margin: auto;margin-left: 5px" (click)="showRePassword = !showRePassword">
+        <div *ngIf="showRePassword">
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+        <div *ngIf="!showRePassword">
+          <i class="fa-solid fa-eye"></i>
+        </div>
+      </div>
+    </div>
+      <small
+        style="bottom: -20px"
+        *ngIf="signUpForm.get('rePassword')?.errors?.['required']"
+        class="text-danger d-block mt-2 position-absolute"
+      >
+        Esse campo é obrigatório!
+      </small>
+    </div>
+    <div class="d-grid">
+      <button
+        type="submit"
+        [disabled]="signUpForm.invalid || signUpForm.pending"
+        class="btn btn-primary btn-block mt-4"
+      >
+        Register
+      </button>
+
+      <button
+        type="submit"
+        [routerLink]="['']"
+        class="btn btn-primary btn-block mt-4"
+      >
+        Logar
+      </button>
+
+      <small
+        style="font-size: 15px"
+        *ngIf="!passwordRegexResult"
+        class="text-danger d-block mt-2"
+      >
+        <div class="alert alert-danger" role="alert">
+          &bull; Sua senha deve conter letra maiúscula, minuscula, numero e
+          caracter especial.
+        </div>
+      </small>
+
+      <small
+        style="font-size: 15px"
+        *ngIf="SuccessSignUp"
+        class="text-success d-block mt-2"
+      >
+        <div class="alert alert-success" role="alert">
+          E-mail para confirmação de cadastro enviado com sucesso.
+        </div>
+      </small>
+    </div>
+  </form>
+</div>
+
+<ng-template #content let-modal>
+  <div>
+    <div class="view">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          Confirmação do E-mail
+        </h4>
+        <button
+          style="
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: lightgray;
+            border: none;
+          "
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div style="font-size: 20px; display: inline">
+            Foi enviado um
+            <p style="display: inline" class="text-danger">e-mail</p>
+            para {{ signUpForm.get("email")?.value }} para confirmar o cadastro
+            do usuário.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

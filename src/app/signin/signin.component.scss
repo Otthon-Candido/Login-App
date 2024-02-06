@@ -1,0 +1,21 @@
+.form-group{
+    margin: auto;
+}
+
+.form-control{
+    padding: 10px;
+}
+
+.resetPassword:hover{
+    text-decoration: underline;
+}
+
+.resetPassword
+{
+    color: darkslategrey; display: inline; cursor: pointer
+}
+
+.loginScreen{
+    height: 100vh;
+    background: linear-gradient(0deg,#68849f,#fff 100%,red 0);
+}

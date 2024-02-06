@@ -1,0 +1,45 @@
+<div class="w-100" style="height: 50px; background-color: lightgray">
+  <div 
+    class="h-100"
+    style="display: flex; justify-content: end; align-items: center"
+  >
+  <div #dropDownUser >
+    <div id="user-logged" class="d-flex nav-circle">
+      <button
+        (click)="btnMenuUserOn = !btnMenuUserOn"
+        id="user"
+        class="btn user-photo btn-nav"
+        style="border: none"
+      >
+        <i class="fa-regular fa-user"></i>
+      </button>
+      <!-- dropdown Alarme -->
+    </div>
+
+    <div
+      id="userMenu"
+      class="user-menu d-grid popup-nav"
+      [ngClass]="{ 'user-menu-on': btnMenuUserOn }"
+    >
+      <div
+        style="margin: 10px; display: grid;     justify-items: center;"
+        *ngIf="user$ | async as user"
+      >
+        <div>
+          <a>{{ user.userName }}</a>
+        </div>
+        <button
+          style="width: 80px"
+          (click)="logout()"
+          class="d-flex justify-content-center align-items-center logout-button"
+        >
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <p class="mb-0 text-black logout">Logout</p>
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,10 @@
+<nav class="navbar navbar-dark bg-dark">
+  <header *ngIf="user$ | async as user">
+    <nav>
+      <div>
+        <a style="color: white">{{ user.userName }}</a>
+        <a style="color: white" (click)="logOut()">(LogOut)</a>
+      </div>
+    </nav>
+  </header>
+</nav>
